@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>GAME</title>
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <style>
+            .mapping {
+                /*background-color: #ccc;*/
+            }
+            .map {
+                width: 500px;
+                height: 500px;
+            }
+            .char {
+                background-color: #2c3e50;
+                border-radius: 50%;
+                position: absolute;
+            }
+            .obj {
+                background-color: #8e44ad;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                position: absolute;
+            }
+        </style>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            var w = 119;
+            var a = 97;
+            var s = 115;
+            var d = 100;
+
+            var char = { ix: '20px', iy:'20px', ml: '20px', mb: '20px', mt: '20px', speed:10};
+
+            $('.map').html("<div class='char' style=' width:"+char.ix+"; height:"+char.iy+"; left:"+char.ml+"; top:"+char.mt+"; '></div>");
+
+            function movex(x){
+                if(x==a || x==d){
+                    space = $('.char').css('left');
+                    res = parseInt(space.replace("px",""));
+                    if(d==x) move = res+char.speed;
+                    else if (x==a) move = res-char.speed;
+                    $('.char').css({'left': move+"px"});
+                }
+            }
+
+            function movey(x){
+                if(x==w || x==s){
+                    space = $('.char').css('top');
+                    res = parseInt(space.replace("px",""));
+                    console.log("y -> "+res);
+                    if(x==s) move = res+char.speed;
+                    else if (x==w) move = res-char.speed;
+                    console.log("move ->"+move);
+
+                    $('.char').css({'top': move+"px"});
+                }
+            }
+
+            function montaObj(x,y){
+                console.log('ox->'+x+'; oy->'+y);
+                $('.obj').remove();
+                map = $('.map').html();
+                $('.map').html(map+"<div class='obj' style='left:"+x+"px; top: "+y+"px'></div>");
+            }
+
+            function helperParseInt(v){
+                return parseInt(v.replace("px",""));
+            }
+
+            function getCoordObj(){
+                obj = { x: helperParseInt($('.obj').css('left')), y: helperParseInt($('.obj').css('top')) }
+                return obj
+            }
+
+            function getCoordChar(){
+                obj = { x: helperParseInt($('.char').css('left')), y: helperParseInt($('.char').css('top')) }
+                return obj
+            }
+
+            function colider(){
+                dchar = getCoordChar();
+                dobj = getCoordObj();
+                console.log("fui executado!");
+                console.log(dchar);
+                console.log(dobj);
+                if ((dchar.x >= dobj.x ) && (dchar.x < dobj.x+22) && (dobj.y >= dchar.y) && (dchar.y < dobj.y+22) ){
+                    $('.obj').html("<img src='expl.gif'/>");
+                }
+            }
+
+            randx = Math.floor((Math.random() * 500) + 1);
+            randy = Math.floor((Math.random() * 500) + 1);
+            montaObj(randx,randy);
+            console.log(getCoordObj());
+            console.log(getCoordChar());
+            $(document).keypress(function(e){
+                movex(e.which);
+                movey(e.which);
+                colider();
+            });
+
+        });
+        </script>
+
+    </head>
+    <body>
+        <div class="mapping">
+            <div class="map"></div>
+        </div>
+    </body>
+</html>
