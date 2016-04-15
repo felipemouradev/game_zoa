@@ -1,0 +1,76 @@
+body{
+    background-image: url('../images/terrain.png');
+}
+.mapping {
+
+    /*background-color: #ccc;*/
+}
+.map {
+
+    width: 500px;
+    height: 500px;
+}
+.left-par {
+    background-image: url('../images/left-par.fw.png');
+    width: 29px;
+    height: 44px;
+}
+
+.left-impar {
+    background-image: url('../images/left-impar.fw.png');
+    width: 29px;
+    height: 44px;
+}
+
+.right-par {
+    background-image: url('../images/right-par.fw.png');
+    width: 29px;
+    height: 44px;
+}
+
+.right-impar {
+    background-image: url('../images/right-impar.fw.png');
+    width: 29px;
+    height: 44px;
+}
+.up-par {
+    background-image: url('../images/up-par.fw.png');
+    width: 26px;
+    height: 46px;
+}
+
+.up-impar {
+    background-image: url('../images/up-impar.fw.png');
+    width: 26px;
+    height: 46px;
+}
+
+.down-par {
+    background-image: url('../images/down-par.fw.png');
+    width: 26px;
+    height: 46px;
+}
+
+.down-impar {
+    background-image: url('../images/down-impar.fw.png');
+    width: 26px;
+    height: 46px;
+}
+.explosion{
+    background-image: url('../images/fire_ball.fw.png');
+    width: 69px;
+    height: 44px;
+    position: absolute;
+}
+
+#char {
+    position: absolute;
+}
+
+.obj {
+    background-color: #8e44ad;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
